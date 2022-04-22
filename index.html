@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="assets/d3.v4.min.js"></script>
+    <script src="assets/d3-queue.min.js"></script>
+    <style>
+        #vis {
+            height: 100%;
+            margin: 0 auto;
+        }
+
+        #vis2 {
+            height: 100%;
+            margin: 0 auto;
+        }
+
+        .bar:hover {fill: orange; }
+
+        .bar2:hover {fill: orange; }
+
+        .line {
+            fill: none;
+            stroke-width: 2px;
+        }
+
+        h1 {
+            font-size: 25px;
+        }
+
+        p {
+            font-size: 20px;
+        }
+    </style>
+    <title>Assignment 2</title>
+</head>
+<body>
+<h1>Question 1</h1>
+<form>
+    <label for="time_val">Please select a date: </label>
+    <input type="range" min="1" max="26" step="1" id="time_val" value=25 oninput="y_m.value = dateTransfer()">
+    <script>
+        function dateTransfer() {
+            var x = document.getElementById("time_val").value - 1;
+            var dates = ['2019-12', '2020-01', '2020-02', '2020-03', '2020-04', '2020-05',
+                '2020-06', '2020-07', '2020-08', '2020-09', '2020-10', '2020-11',
+                '2020-12', '2021-01', '2021-02', '2021-03', '2021-04', '2021-05',
+                '2021-06', '2021-07', '2021-08', '2021-09', '2021-10', '2021-11',
+                '2021-12', '2022-01'];
+            return dates[x];
+        }
+    </script>
+    <output name="y_m" id="y_m">2021-12</output>
+</form>
+<div id="vis"></div>
+<script src="assets/script_q1.js"></script>
+
+<h1>Question 2</h1>
+<form>
+
+    Please select a dataset:
+
+    <select id="dropdown">
+
+        <option value="1" selected>Newly Increased Cases</option>
+
+        <option value="2">Newly Increased Deaths</option>
+
+        <option value="3">Case Fatality Rate</option>
+
+    </select>
+
+</form>
+<div id="vis2"></div>
+<script src="assets/script_q2.js"></script>
+<h1>Part 3. IMPLEMENTATION</h1>
+<p>
+    The dataset of this webapp includes 26 separate CSV files and one dataset array in the javascript file.
+    All these datasets were created by R based on the data subtraction and processing result of Nextstrain and WHO Coronavirus databases.
+    Generally speaking, I selected specific attributes from the original dataset and then accumulate the required attributes by month.
+    Besides, the monthly deaths were divided by the monthly cases to partially represent the Case Fatality Rate.
+</p>
+<p>Adapted from Martin Chorley's Block at <a href="https://bl.ocks.org/martinjc/8a2a545d5c48ef1ff65b747554332e3d">https://bl.ocks.org/martinjc/8a2a545d5c48ef1ff65b747554332e3d</a>.</p>
+<p>These implemented visualizations allow users to use a slider or dropdown list to interact with the visualization result.
+    The interaction triggers transitions and the changing of datasets.
+</p>
+<h1>Acknowledgement of Data Source</h1>
+<p>The dataset for newly increased COVID-19 cases and deaths is from the WHO Coronavirus (COVID-19) Dashboard at <a href="https://covid19.who.int/data">https://covid19.who.int/data</a>.</p>
+</body>
+</html>
